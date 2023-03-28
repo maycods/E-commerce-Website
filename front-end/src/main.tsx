@@ -8,9 +8,9 @@ import "@fontsource/roboto/700.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./ErrorPage";
 import { ProductCatalog } from "./pages/ProductCatalog";
-import { ProductDetails } from "./pages/ProductDetails";
 import { ShoppingCart } from "./pages/ShoppingCart";
 import { Home } from "./pages/Home";
+import ProductDetails from "./pages/ProductDetails";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
     element: <ProductDetails />,
   },
   {
-    path: "/shopping-cart",
+    path: "/cart",
     element: <ShoppingCart />,
   },
 ]);
