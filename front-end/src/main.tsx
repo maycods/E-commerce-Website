@@ -1,10 +1,37 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './index.css'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ErrorPage from "./ErrorPage";
+import { ProductCatalog } from "./pages/ProductCatalog";
+import { ProductDetails } from "./pages/ProductDetails";
+import { ShoppingCart } from "./pages/ShoppingCart";
+import { Home } from "./pages/Home";
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/products",
+    element: <ProductCatalog />,
+  },
+  {
+    path: "/products/:productId",
+    element: <ProductDetails />,
+  },
+  {
+    path: "/shopping-cart",
+    element: <ShoppingCart />,
+  },
+]);
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+    <RouterProvider router={router} />
+  </React.StrictMode>
+);
