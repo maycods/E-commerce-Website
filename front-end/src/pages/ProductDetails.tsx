@@ -7,10 +7,11 @@ import {
   Typography,
   Button,
 } from "@mui/material";
+import { Product } from "../Store";
 
 export default function ProductDetails() {
   const { productId } = useParams();
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState<Product>({});
 
   // useEffect(() => {
   //   // Fetch the product data from your backend server using the productId parameter

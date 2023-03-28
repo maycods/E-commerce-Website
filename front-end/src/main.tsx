@@ -11,23 +11,30 @@ import { ProductCatalog } from "./pages/ProductCatalog";
 import { ShoppingCart } from "./pages/ShoppingCart";
 import { Home } from "./pages/Home";
 import ProductDetails from "./pages/ProductDetails";
+import { Landing } from "./pages/Landing";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
     errorElement: <ErrorPage />,
-  },
-  {
-    path: "/products",
-    element: <ProductCatalog />,
-  },
-  {
-    path: "/products/:productId",
-    element: <ProductDetails />,
-  },
-  {
-    path: "/cart",
-    element: <ShoppingCart />,
+    children: [
+      {
+        path: "/",
+        element: <Landing />,
+      },
+      {
+        path: "/products",
+        element: <ProductCatalog />,
+      },
+      {
+        path: "/products/:productId",
+        element: <ProductDetails />,
+      },
+      {
+        path: "/cart",
+        element: <ShoppingCart />,
+      },
+    ],
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
