@@ -1,8 +1,18 @@
-import { AppBar, Toolbar, IconButton, Typography, Button } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  Button,
+  Badge,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
+import { useStore } from "../Store";
+import { ShoppingCart } from "@mui/icons-material";
 
 export function NavBar() {
+  const nbItems = useStore((state) => state.nbItems);
   return (
     <AppBar position="static">
       <Toolbar>
@@ -14,9 +24,16 @@ export function NavBar() {
             The E-Shop
           </Link>
         </Typography>
-        <Button component={Link} to="/cart" color="inherit">
-          Cart
-        </Button>
+        <IconButton
+          aria-label="car"
+          component={Link}
+          to="/cart"
+          color="inherit"
+        >
+          <Badge badgeContent={nbItems} color="secondary">
+            <ShoppingCart />
+          </Badge>
+        </IconButton>
         {/* <Button component={Link} to="/login" color="inherit">
           Login
         </Button> */}

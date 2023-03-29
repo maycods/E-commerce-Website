@@ -9,48 +9,10 @@ import {
 } from "@mui/material";
 import { Product, useStore } from "../Store";
 import axios from "axios";
+import { useProduct } from "../hooks/useProduct";
 export default function ProductDetails() {
   const addToCart = useStore((state) => state.addToCart);
-  const { productId } = useParams();
-  const [product, setProduct] = useState<Product>();
-
-  // useEffect(() => {
-  //   // Fetch the product data from your backend server using the productId parameter
-  //   fetch(`/api/articles/${productId}`)
-  //     .then((response) => response.json())
-  //     .then((data) => setProduct(data))
-  //     .catch((error) => console.error(error));
-  // }, [productId]);
-  async function getProduct() {
-    const response = await axios.get(
-      `https://dummyjson.com/products/${productId}`
-    );
-
-    const elt = await response.data;
-    console.log(elt);
-
-    let prods: Product = {
-      id: elt.id,
-      title: elt.title,
-      price: elt.price,
-      description: elt.description,
-      image: elt.images[0],
-      rating: elt.rating,
-      stock: elt.stock,
-      category: elt.category,
-      thumbnail: elt.thumbnail,
-    };
-    setProduct(prods);
-  }
-
-  useEffect(() => {
-    // Fetch the product data from your backend server using the productId parameter
-    getProduct();
-  }, [productId]);
-  if (!product) {
-    return <div>Loading...</div>;
-  }
-
+  const product = useProduct();
   return (
     <Card>
       <CardMedia

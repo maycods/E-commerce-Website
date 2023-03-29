@@ -11,45 +11,11 @@ import { useEffect, useState } from "react";
 import { Product, useStore } from "../Store";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useProducts } from "../hooks/useProducts";
 
 export const ProductCatalog = () => {
   const addToCart = useStore((state) => state.addToCart);
-  const [products, setProducts] = useState<Product[]>([]);
-  const getProducts = async () => {
-    const response = await axios.get("https://dummyjson.com/products");
-    const data = await response.data;
-    let prods: Product[] = data.products.map(
-      (elt: {
-        title: any;
-        id: any;
-        price: any;
-        description: any;
-        images: any[];
-        rating: any;
-        stock: any;
-        category: any;
-        thumbnail: any;
-      }) => {
-        return {
-          id: elt.id,
-          title: elt.title,
-          price: elt.price,
-          description: elt.description,
-          image: elt.images[0],
-          rating: elt.rating,
-          stock: elt.stock,
-          category: elt.category,
-          thumbnail: elt.thumbnail,
-        };
-      }
-    );
-    setProducts(prods);
-  };
-
-  useEffect(() => {
-    getProducts();
-  }, []);
-
+  const products = useProducts();
   return (
     <Box sx={{ padding: "16px" }}>
       <Typography variant="h4" component="h1" gutterBottom>
