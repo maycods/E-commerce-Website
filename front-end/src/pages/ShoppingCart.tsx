@@ -12,6 +12,7 @@ import { Delete } from "@mui/icons-material";
 import { useStore } from "../Store";
 export const ShoppingCart = () => {
   const cartItems = useStore((state) => state.cart);
+  const removeFromCart = useStore((state) => state.removeFromCart);
   // const cartItems = [
   //   {
   //     id: 1,
@@ -53,7 +54,7 @@ export const ShoppingCart = () => {
                 <IconButton
                   edge="end"
                   aria-label="delete"
-                  // onClick={() => removeFromCart(item)}
+                  onClick={() => removeFromCart(item)}
                 >
                   <Delete />
                 </IconButton>

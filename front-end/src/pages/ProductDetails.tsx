@@ -7,9 +7,10 @@ import {
   Typography,
   Button,
 } from "@mui/material";
-import { Product } from "../Store";
+import { Product, useStore } from "../Store";
 import axios from "axios";
 export default function ProductDetails() {
+  const addToCart = useStore((state) => state.addToCart);
   const { productId } = useParams();
   const [product, setProduct] = useState<Product>();
 
@@ -30,7 +31,7 @@ export default function ProductDetails() {
 
     let prods: Product = {
       id: elt.id,
-      name: elt.name,
+      title: elt.title,
       price: elt.price,
       description: elt.description,
       image: elt.images[0],
@@ -56,11 +57,11 @@ export default function ProductDetails() {
         component="img"
         height="300"
         image={product.image}
-        alt={product.name}
+        alt={product.title}
       />
       <CardContent>
         <Typography variant="h5" component="h2">
-          {product.name}
+          {product.title}
         </Typography>
         <Typography variant="body1" color="textSecondary" component="p">
           {product.description}
@@ -68,7 +69,11 @@ export default function ProductDetails() {
         <Typography variant="h6" component="p">
           Price: ${product.price}
         </Typography>
-        <Button variant="contained" color="primary">
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => addToCart(product)}
+        >
           Add to Cart
         </Button>
       </CardContent>
