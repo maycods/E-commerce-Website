@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 export interface Product {
   id: number;
-  name: string;
+  title: string;
   price: number;
   description: string;
   image: string;
@@ -19,7 +19,7 @@ export interface ProductState {
   removeFromCart: (product: Product) => void;
 }
 
-const useStore = create<ProductState>((set) => ({
+export const useStore = create<ProductState>((set) => ({
   nbItems: 0,
   cart: [],
   addToCart: (product: Product) =>

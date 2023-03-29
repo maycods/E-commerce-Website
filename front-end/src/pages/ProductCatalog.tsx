@@ -7,18 +7,19 @@ import {
   Button,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import { Product } from "../Store";
+import { Product, useStore } from "../Store";
 import axios from "axios";
 
 export const ProductCatalog = () => {
+  const addToCart = useStore((state) => state.addToCart);
   const [products, setProducts] = useState<Product[]>([]);
   const getProducts = async () => {
     const response = await axios.get("https://dummyjson.com/products");
     const data = await response.data;
     let prods: Product[] = data.products.map(
       (elt: {
+        title: any;
         id: any;
-        name: any;
         price: any;
         description: any;
         images: any[];
@@ -29,7 +30,7 @@ export const ProductCatalog = () => {
       }) => {
         return {
           id: elt.id,
-          name: elt.name,
+          title: elt.title,
           price: elt.price,
           description: elt.description,
           image: elt.images[0],
@@ -58,20 +59,24 @@ export const ProductCatalog = () => {
             <Card>
               <CardMedia
                 component="img"
-                alt={product.name}
+                alt={product.title}
                 height="200"
                 image={product.image}
               />
               <CardContent>
                 <Typography variant="h5" component="h2">
-                  {product.name}
+                  {product.title}
                 </Typography>
                 <Typography color="textSecondary">
                   {product.description}
                 </Typography>
                 <Typography variant="h6">${product.price}</Typography>
               </CardContent>
-              <Button variant="contained" color="primary">
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => addToCart(product)}
+              >
                 Add to Cart
               </Button>
             </Card>
