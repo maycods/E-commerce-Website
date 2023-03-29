@@ -17,7 +17,6 @@ export function useProduct() {
     category: "",
     thumbnail: "",
   });
-
   // useEffect(() => {
   //   // Fetch the product data from your backend server using the productId parameter
   //   fetch(`/api/articles/${productId}`)

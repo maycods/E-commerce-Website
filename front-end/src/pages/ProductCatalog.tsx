@@ -4,17 +4,12 @@ import {
   Card,
   CardMedia,
   CardContent,
-  Button,
   Box,
 } from "@mui/material";
-import { useEffect, useState } from "react";
-import { Product, useStore } from "../Store";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { useProducts } from "../hooks/useProducts";
 
 export const ProductCatalog = () => {
-  const addToCart = useStore((state) => state.addToCart);
   const products = useProducts();
   return (
     <Box sx={{ padding: "16px" }}>
@@ -41,13 +36,13 @@ export const ProductCatalog = () => {
                   </Typography>
                   <Typography variant="h6">${product.price}</Typography>
                 </CardContent>
-                <Button
+                {/* <Button
                   variant="contained"
                   color="primary"
                   onClick={() => addToCart(product)}
                 >
                   Add to Cart
-                </Button>
+                </Button> */}
               </Card>
             </Link>
           </Grid>

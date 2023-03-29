@@ -12,6 +12,7 @@ import { ShoppingCart } from "./pages/ShoppingCart";
 import { Home } from "./pages/Home";
 import ProductDetails from "./pages/ProductDetails";
 import { Landing } from "./pages/Landing";
+import { Categories } from "./pages/Categories";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <ShoppingCart />,
+      },
+      {
+        path: "/categories",
+        element: <Categories />,
       },
     ],
   },

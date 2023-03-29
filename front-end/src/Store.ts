@@ -23,10 +23,15 @@ export const useStore = create<ProductState>((set) => ({
   nbItems: 0,
   cart: [],
   addToCart: (product: Product) =>
-    set((state) => ({
-      cart: [...state.cart, product],
-      nbItems: state.nbItems + 1,
-    })),
+    set((state) => {
+      if (state.cart.find((p) => p.id === product.id)) {
+        return state;
+      }
+      return {
+        cart: [...state.cart, product],
+        nbItems: state.nbItems + 1,
+      };
+    }),
   removeFromCart: (product: Product) =>
     set((state) => ({
       cart: state.cart.filter((p) => p.id !== product.id),

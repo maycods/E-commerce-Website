@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import {
   Card,
   CardMedia,
@@ -7,9 +5,9 @@ import {
   Typography,
   Button,
 } from "@mui/material";
-import { Product, useStore } from "../Store";
-import axios from "axios";
+import { useStore } from "../Store";
 import { useProduct } from "../hooks/useProduct";
+
 export default function ProductDetails() {
   const addToCart = useStore((state) => state.addToCart);
   const product = useProduct();

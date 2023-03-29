@@ -1,12 +1,4 @@
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Typography,
-  Button,
-  Badge,
-} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import { AppBar, Toolbar, IconButton, Typography, Badge } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useStore } from "../Store";
 import { ShoppingCart } from "@mui/icons-material";
