@@ -7,14 +7,40 @@ import {
   Button,
 } from "@mui/material";
 import { useEffect, useState } from "react";
+import { Product } from "../Store";
+import axios from "axios";
 
 export const ProductCatalog = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const getProducts = async () => {
-    const response = await fetch("https://dummyjson.com/products");
-    const data = await response.json();
-    console.log(data);
-    setProducts(data.products);
+    const response = await axios.get("https://dummyjson.com/products");
+    const data = await response.data;
+    let prods: Product[] = data.products.map(
+      (elt: {
+        id: any;
+        name: any;
+        price: any;
+        description: any;
+        images: any[];
+        rating: any;
+        stock: any;
+        category: any;
+        thumbnail: any;
+      }) => {
+        return {
+          id: elt.id,
+          name: elt.name,
+          price: elt.price,
+          description: elt.description,
+          image: elt.images[0],
+          rating: elt.rating,
+          stock: elt.stock,
+          category: elt.category,
+          thumbnail: elt.thumbnail,
+        };
+      }
+    );
+    setProducts(prods);
   };
 
   useEffect(() => {
@@ -34,7 +60,7 @@ export const ProductCatalog = () => {
                 component="img"
                 alt={product.name}
                 height="200"
-                image={product.images[0]}
+                image={product.image}
               />
               <CardContent>
                 <Typography variant="h5" component="h2">

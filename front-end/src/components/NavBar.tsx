@@ -6,11 +6,13 @@ export function NavBar() {
   return (
     <AppBar position="static">
       <Toolbar>
-        <IconButton edge="start" color="inherit" aria-label="menu">
+        {/* <IconButton edge="start" color="inherit" aria-label="menu">
           <MenuIcon />
-        </IconButton>
+        </IconButton> */}
         <Typography variant="h6" style={{ flexGrow: 1 }}>
-          My Ecommerce Website
+          <Link to="/" style={{ color: "white", textDecoration: "none" }}>
+            The E-Shop
+          </Link>
         </Typography>
         <Button component={Link} to="/cart" color="inherit">
           Cart

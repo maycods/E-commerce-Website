@@ -8,10 +8,10 @@ import {
   Button,
 } from "@mui/material";
 import { Product } from "../Store";
-
+import axios from "axios";
 export default function ProductDetails() {
   const { productId } = useParams();
-  const [product, setProduct] = useState<Product>({});
+  const [product, setProduct] = useState<Product>();
 
   // useEffect(() => {
   //   // Fetch the product data from your backend server using the productId parameter
@@ -20,13 +20,31 @@ export default function ProductDetails() {
   //     .then((data) => setProduct(data))
   //     .catch((error) => console.error(error));
   // }, [productId]);
+  async function getProduct() {
+    const response = await axios.get(
+      `https://dummyjson.com/products/${productId}`
+    );
+
+    const elt = await response.data;
+    console.log(elt);
+
+    let prods: Product = {
+      id: elt.id,
+      name: elt.name,
+      price: elt.price,
+      description: elt.description,
+      image: elt.images[0],
+      rating: elt.rating,
+      stock: elt.stock,
+      category: elt.category,
+      thumbnail: elt.thumbnail,
+    };
+    setProduct(prods);
+  }
 
   useEffect(() => {
     // Fetch the product data from your backend server using the productId parameter
-    fetch(`https://dummyjson.com/products/${productId}`)
-      .then((response) => response.json())
-      .then((data) => setProduct(data))
-      .catch((error) => console.error(error));
+    getProduct();
   }, [productId]);
   if (!product) {
     return <div>Loading...</div>;
