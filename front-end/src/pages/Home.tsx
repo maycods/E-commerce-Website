@@ -40,7 +40,9 @@ const theme1: ThemeOptions = {
     MuiCardContent: {
       styleOverrides: {
         root: {
-          //make the content on the bottom of the card :
+          flexGrow: 1,
+          display: "flex",
+          flexDirection: "column",
           justifyContent: "space-between",
         },
       },
@@ -50,10 +52,10 @@ const theme1: ThemeOptions = {
         root: {
           display: "flex",
           flexDirection: "column",
+
           gradient: "linear-gradient(45deg, #FE6B8B 30%, #007FFF 90%)",
           border: "solid 2px transparent",
           borderImage: "linear-gradient(45deg, #FE6B8B, #007FFF) 1",
-          justifyContent: "space-between",
         },
       },
     },
@@ -84,14 +86,16 @@ export const Home = () => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <NavBar />
-        <Container
-          maxWidth="xl"
+        <Box
+          // maxWidth="xl"
           sx={{
             marginTop: 3,
+            maxWidth: "96%",
+            margin: "auto",
           }}
         >
           <Outlet />
-        </Container>
+        </Box>
       </ThemeProvider>
     </>
   );

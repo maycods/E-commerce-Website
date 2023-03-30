@@ -1,4 +1,11 @@
-import { Grid, Card, CardMedia, CardContent, Typography } from "@mui/material";
+import {
+  Grid,
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  Box,
+} from "@mui/material";
 import { Link } from "react-router-dom";
 import { Product } from "../Store";
 
@@ -19,7 +26,16 @@ export const ItemCard = ({ product }: { product: Product }) => {
             {product.title}
           </Typography>
           <Typography color="textSecondary">{product.description}</Typography>
-          <Typography variant="h6">${product.price}</Typography>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Typography color="textSecondary">price :</Typography>
+            <Typography variant="h6">${product.price}</Typography>
+          </Box>
         </CardContent>
       </Card>
     </Grid>
