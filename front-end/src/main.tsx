@@ -13,6 +13,7 @@ import ProductDetails from "./pages/ProductDetails";
 import { Landing } from "./pages/Landing";
 import { Categories } from "./pages/Categories";
 import { ThemeOptions, createTheme, ThemeProvider } from "@mui/material";
+import { Discount } from "@mui/icons-material";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "/categories",
         element: <Categories />,
+      },
+      {
+        path: "/discounts",
+        element: <Discount />,
       },
     ],
   },

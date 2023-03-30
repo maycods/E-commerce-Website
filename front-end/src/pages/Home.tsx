@@ -32,7 +32,7 @@ const theme1: ThemeOptions = {
       styleOverrides: {
         root: {
           backgroundColor: "#000",
-          boxShadow: " 0px 0px 30px 2px #0080ffc0",
+          boxShadow: " 0px 0px 30px 2px #0080ff99",
           borderBottom: "solid  2px #0579ec",
         },
       },
