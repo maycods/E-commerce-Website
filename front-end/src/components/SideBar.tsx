@@ -1,10 +1,10 @@
 import {
-  makeStyles,
   TextField,
   ListItemIcon,
   List,
   ListItem,
   ListItemText,
+  Box,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import CategoryIcon from "@mui/icons-material/Category";
@@ -29,7 +29,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <div style={{ width: "250px", padding: "10px" }}>
+    <Box sx={{ width: "250px", padding: "10px" }}>
       <TextField
         variant="outlined"
         margin="normal"
@@ -54,7 +54,7 @@ const Sidebar = () => {
           </ListItem>
         ))}
       </List>
-    </div>
+    </Box>
   );
 };
 

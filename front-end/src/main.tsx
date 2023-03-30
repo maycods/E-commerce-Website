@@ -4,7 +4,6 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./ErrorPage";
 import { ProductCatalog } from "./pages/ProductCatalog";
@@ -13,6 +12,7 @@ import { Home } from "./pages/Home";
 import ProductDetails from "./pages/ProductDetails";
 import { Landing } from "./pages/Landing";
 import { Categories } from "./pages/Categories";
+import { ThemeOptions, createTheme, ThemeProvider } from "@mui/material";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -42,6 +42,7 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <RouterProvider router={router} />
