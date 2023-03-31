@@ -1,15 +1,9 @@
-import {
-  Card,
-  CardMedia,
-  CardContent,
-  Typography,
-  Button,
-  Box,
-} from "@mui/material";
+import { Typography, Button, Box, Rating, TextField } from "@mui/material";
 import Image from "mui-image";
 import { useStore } from "../Store";
 import { useProduct } from "../hooks/useProduct";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
+import { ShoppingCart } from "@mui/icons-material";
 
 export default function ProductDetails() {
   const addToCart = useStore((state) => state.addToCart);
@@ -17,7 +11,12 @@ export default function ProductDetails() {
   // a product details page, the image on the left and the name, price rating description add to cart button and the quantity on the right\
 
   return (
-    <Grid2 container spacing={8}>
+    <Grid2
+      container
+      spacing={4}
+      alignItems="center"
+      justifyContent="space-around"
+    >
       <Grid2 md={8}>
         <Box
           display="flex"
@@ -29,59 +28,63 @@ export default function ProductDetails() {
           <Image
             src={product.image}
             alt={product.title}
-            height="80%"
+            height="90%"
+            width="81%"
             fit="contain"
           />
         </Box>
       </Grid2>
-      <Grid2 md={4}>
-        <Typography variant="h5" component="h2">
+      <Grid2
+        md={4}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-around",
+          height: "80vh",
+          padding: "20px",
+          border: "1px solid #fff",
+        }}
+      >
+        <Typography variant="h4" component="h2" textAlign="center">
           {product.title}
         </Typography>
-        <Typography variant="body1" color="textSecondary" component="p">
-          {product.description}
-        </Typography>
-        <Typography variant="h6" component="p">
-          Price: ${product.price}
-        </Typography>
+        <Box>
+          <Typography variant="h6">Description :</Typography>
+          <Typography variant="body1" color="textSecondary" component="p">
+            {product.description}
+          </Typography>
+        </Box>
+        <Box display="flex" alignItems="center" justifyContent="space-between">
+          <Typography variant="h6">Rating :</Typography>
+          <Box display="flex">
+            <Rating name="rating" value={product.rating} readOnly />
+            <Typography>({product.rating})</Typography>
+          </Box>
+        </Box>
+        <Box display="flex" alignItems="center" justifyContent="space-between">
+          <Typography variant="h6">Add Quantity :</Typography>
+          <TextField
+            label="Quantity "
+            variant="outlined"
+            type="number"
+            size="medium"
+          />
+        </Box>
+        <Box display="flex" justifyContent="space-between">
+          <Typography variant="h6" component="p">
+            Price:
+          </Typography>
+          <Typography variant="h6">${product.price}</Typography>
+        </Box>
         <Button
           variant="contained"
-          color="primary"
+          color="secondary"
           onClick={() => addToCart(product)}
         >
+          <ShoppingCart />
           Add to Cart
         </Button>
       </Grid2>
     </Grid2>
   );
-  // return (
-  //   <Card>
-  //     <CardMedia
-  //       component="img"
-  //       height="300"
-  //       image={product.image}
-  //       alt={product.title}
-  //     />
-  //     <CardContent>
-  //       <Typography variant="h5" component="h2">
-  //         {product.title}
-  //       </Typography>
-  //       <Typography variant="body1" color="textSecondary" component="p">
-  //         {product.description}
-  //       </Typography>
-  //       <Typography variant="h6" component="p">
-  //         Price: ${product.price}
-  //       </Typography>
-  //       <Button
-  //         variant="contained"
-  //         color="primary"
-  //         onClick={() => addToCart(product)}
-  //       >
-  //         Add to Cart
-  //       </Button>
-  //     </CardContent>
-  //   </Card>
-  // );
 }
-
-// export default ProductDetails;

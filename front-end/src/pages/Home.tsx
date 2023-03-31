@@ -87,8 +87,8 @@ export const Home = () => {
         <NavBar />
         <Box
           sx={{
-            marginTop: "5.6rem",
-            maxWidth: "96%",
+            marginTop: "5.4rem",
+            maxWidth: "90%",
             marginX: "auto ",
           }}
         >
