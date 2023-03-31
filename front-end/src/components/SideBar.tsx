@@ -5,51 +5,59 @@ import {
   ListItem,
   ListItemText,
   Box,
+  ListSubheader,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import CategoryIcon from "@mui/icons-material/Category";
+import { useCategories } from "../hooks/useCategories";
 
 const Sidebar = () => {
-  let categories = [
-    { id: 1, name: "Category 1" },
-    { id: 2, name: "Category 2" },
-    { id: 3, name: "Category 3" },
-    { id: 4, name: "Category 4" },
-    { id: 5, name: "Category 5" },
-    { id: 6, name: "Category 6" },
-    { id: 7, name: "Category 7" },
-    { id: 8, name: "Category 8" },
-    { id: 9, name: "Category 9" },
-    { id: 10, name: "Category 10" },
-    { id: 11, name: "Category 11" },
-    { id: 12, name: "Category 12" },
-    { id: 13, name: "Category 13" },
-    { id: 14, name: "Category 14" },
-    { id: 15, name: "Category 15" },
-  ];
+  let categories = useCategories();
 
   return (
-    <Box sx={{ width: "250px", padding: "10px" }}>
-      <TextField
-        variant="outlined"
-        margin="normal"
-        label="Search"
-        fullWidth
-        InputProps={{
-          startAdornment: (
-            <ListItemIcon>
-              <SearchIcon />
-            </ListItemIcon>
-          ),
+    <Box
+      sx={{
+        width: "250px",
+        height: "87vh",
+        // padding: "10px",
+        scrollBehavior: "smooth",
+        overflow: "scroll",
+        "&::-webkit-scrollbar": {
+          display: "none",
+        },
+      }}
+      position="fixed"
+    >
+      <List
+        sx={{
+          //add right border
+          borderRight: "1px solid #fff",
         }}
-        // onChange={(event) => handleSearch(event.target.value)}
-      />
-      <List>
+      >
+        <ListSubheader
+          sx={{
+            marginBottom: "10px",
+          }}
+        >
+          <TextField
+            variant="standard"
+            label="Search"
+            fullWidth
+            // InputProps={{
+            //   startAdornment: (
+            //     <ListItemIcon>
+            //       <SearchIcon />
+            //     </ListItemIcon>
+            //   ),
+            // }}
+            // onChange={(event) => handleSearch(event.target.value)}
+          />
+        </ListSubheader>
         {categories.map((category) => (
           <ListItem key={category.id}>
-            <ListItemIcon>
-              <CategoryIcon />
-            </ListItemIcon>
+            {/* <ListItemIcon> */}
+            {/* <CategoryIcon /> */}
+            {/* </ListItemIcon> */}
             <ListItemText primary={category.name} />
           </ListItem>
         ))}

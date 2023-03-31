@@ -2,7 +2,6 @@ import { NavBar } from "../components/NavBar";
 import { Outlet } from "react-router-dom";
 import {
   Box,
-  Container,
   createTheme,
   CssBaseline,
   ThemeOptions,
@@ -89,9 +88,9 @@ export const Home = () => {
         <Box
           // maxWidth="xl"
           sx={{
-            marginTop: 3,
+            marginTop: "5.6rem",
             maxWidth: "96%",
-            margin: "auto",
+            marginX: "auto ",
           }}
         >
           <Outlet />

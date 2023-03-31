@@ -17,7 +17,7 @@ import StoreIcon from "@mui/icons-material/Store";
 export function NavBar() {
   const nbItems = useStore((state) => state.nbItems);
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* <IconButton edge="start" color="inherit" aria-label="menu">

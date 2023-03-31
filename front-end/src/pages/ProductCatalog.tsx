@@ -10,9 +10,8 @@ export const ProductCatalog = () => {
     <Grid2
       container
       justifyContent="space-between"
-      // columns={{ xs: 4, sm: 8, md: 12 }}
       spacing={0}
-      marginTop="2rem"
+      // marginTop="2rem"
     >
       <Grid2 md>
         <Sidebar />
@@ -21,13 +20,7 @@ export const ProductCatalog = () => {
         <Typography variant="h3" component="h1" textAlign="center" gutterBottom>
           All Products
         </Typography>
-        <Grid
-          container
-          spacing={3}
-          // sx={{
-          //   marginTop: "1rem",
-          // }}
-        >
+        <Grid container spacing={3}>
           {products.map((product) => (
             <ItemCard product={product} key={product.id} />
           ))}
