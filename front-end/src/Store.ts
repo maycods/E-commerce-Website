@@ -17,11 +17,15 @@ export interface ProductState {
   cart: Product[];
   addToCart: (product: Product) => void;
   removeFromCart: (product: Product) => void;
+  category: string;
+  setCategory: (category: string) => void;
+  resetCategory: () => void;
 }
 
 export const useStore = create<ProductState>((set) => ({
   nbItems: 0,
   cart: [],
+  category: "",
   addToCart: (product: Product) =>
     set((state) => {
       if (state.cart.find((p) => p.id === product.id)) {
@@ -36,5 +40,13 @@ export const useStore = create<ProductState>((set) => ({
     set((state) => ({
       cart: state.cart.filter((p) => p.id !== product.id),
       nbItems: state.nbItems - 1,
+    })),
+  setCategory: (category: string) =>
+    set((state) => ({
+      category: category,
+    })),
+  resetCategory: () =>
+    set((state) => ({
+      category: "",
     })),
 }));

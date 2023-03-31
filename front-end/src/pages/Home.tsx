@@ -86,7 +86,6 @@ export const Home = () => {
         <CssBaseline />
         <NavBar />
         <Box
-          // maxWidth="xl"
           sx={{
             marginTop: "5.6rem",
             maxWidth: "96%",

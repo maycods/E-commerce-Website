@@ -8,10 +8,12 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useCategories } from "../hooks/useCategories";
+import { useStore } from "../Store";
 
 const Sidebar = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const categories = useCategories(searchTerm);
+  const setCategory = useStore((state) => state.setCategory);
   return (
     <Box
       sx={{
@@ -43,8 +45,14 @@ const Sidebar = () => {
             onChange={(event) => setSearchTerm(event.target.value)}
           />
         </ListSubheader>
+        <ListItemButton onClick={() => setCategory("")}>
+          <ListItemText primary="All Products" />
+        </ListItemButton>
         {categories.map((category) => (
-          <ListItemButton key={category.id}>
+          <ListItemButton
+            key={category.id}
+            onClick={() => setCategory(category.name)}
+          >
             <ListItemText primary={category.name} />
           </ListItemButton>
         ))}

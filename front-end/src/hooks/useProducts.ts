@@ -1,11 +1,17 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useStore } from "../Store";
 import { Product } from "../Store";
 
 export function useProducts() {
   const [products, setProducts] = useState<Product[]>([]);
+  const category = useStore((state) => state.category);
+  const categoryString = category ? `category/${category}` : "";
+
   const getProducts = async () => {
-    const response = await axios.get("https://dummyjson.com/products");
+    const response = await axios.get(
+      `https://dummyjson.com/products/${categoryString}`
+    );
     const data = await response.data;
     let prods: Product[] = data.products.map(
       (elt: {
@@ -37,6 +43,6 @@ export function useProducts() {
 
   useEffect(() => {
     getProducts();
-  }, []);
+  }, [category]);
   return products;
 }
