@@ -1,25 +1,22 @@
 import {
   TextField,
-  ListItemIcon,
   List,
-  ListItem,
   ListItemText,
   Box,
   ListSubheader,
+  ListItemButton,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import CategoryIcon from "@mui/icons-material/Category";
+import { useState } from "react";
 import { useCategories } from "../hooks/useCategories";
 
 const Sidebar = () => {
-  let categories = useCategories();
-
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const categories = useCategories(searchTerm);
   return (
     <Box
       sx={{
         width: "250px",
         height: "87vh",
-        // padding: "10px",
         scrollBehavior: "smooth",
         overflow: "scroll",
         "&::-webkit-scrollbar": {
@@ -43,23 +40,13 @@ const Sidebar = () => {
             variant="standard"
             label="Search"
             fullWidth
-            // InputProps={{
-            //   startAdornment: (
-            //     <ListItemIcon>
-            //       <SearchIcon />
-            //     </ListItemIcon>
-            //   ),
-            // }}
-            // onChange={(event) => handleSearch(event.target.value)}
+            onChange={(event) => setSearchTerm(event.target.value)}
           />
         </ListSubheader>
         {categories.map((category) => (
-          <ListItem key={category.id}>
-            {/* <ListItemIcon> */}
-            {/* <CategoryIcon /> */}
-            {/* </ListItemIcon> */}
+          <ListItemButton key={category.id}>
             <ListItemText primary={category.name} />
-          </ListItem>
+          </ListItemButton>
         ))}
       </List>
     </Box>
