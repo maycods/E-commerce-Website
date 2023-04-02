@@ -6,8 +6,8 @@ import { useProducts } from "../hooks/useProducts";
 import { useStore } from "../Store";
 
 export const ProductCatalog = () => {
-  const products = useProducts();
   const category = useStore((state) => state.category);
+  const products = useProducts(category);
   return (
     <Grid2 container justifyContent="space-between" spacing={0}>
       <Grid2 md>

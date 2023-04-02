@@ -3,9 +3,8 @@ import { useState, useEffect } from "react";
 import { useStore } from "../Store";
 import { Product } from "../Store";
 
-export function useProducts() {
+export function useProducts(category: String) {
   const [products, setProducts] = useState<Product[]>([]);
-  const category = useStore((state) => state.category);
   const categoryString = category ? `category/${category}` : "";
 
   const getProducts = async () => {

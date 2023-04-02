@@ -9,7 +9,6 @@ import { useState } from "react";
 export default function ProductDetails() {
   const addToCart = useStore((state) => state.addToCart);
   const product = useProduct();
-  console.log(product);
 
   const [qtt, setQtt] = useState(0);
   // a product details page, the image on the left and the name, price rating description add to cart button and the quantity on the right\
