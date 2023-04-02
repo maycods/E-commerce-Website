@@ -4,10 +4,14 @@ import { useStore } from "../Store";
 import { useProduct } from "../hooks/useProduct";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import { ShoppingCart } from "@mui/icons-material";
+import { useState } from "react";
 
 export default function ProductDetails() {
   const addToCart = useStore((state) => state.addToCart);
   const product = useProduct();
+  console.log(product);
+
+  const [qtt, setQtt] = useState(0);
   // a product details page, the image on the left and the name, price rating description add to cart button and the quantity on the right\
 
   return (
@@ -68,6 +72,13 @@ export default function ProductDetails() {
             variant="outlined"
             type="number"
             size="medium"
+            value={qtt}
+            onChange={(e) => {
+              parseInt(e.target.value) >= 0 &&
+              product.quantity >= parseInt(e.target.value)
+                ? setQtt(parseInt(e.target.value))
+                : false;
+            }}
           />
         </Box>
         <Box display="flex" justifyContent="space-between">
@@ -79,7 +90,11 @@ export default function ProductDetails() {
         <Button
           variant="contained"
           color="secondary"
-          onClick={() => addToCart(product)}
+          onClick={() => {
+            if (qtt > 0) {
+              addToCart(product, qtt);
+            }
+          }}
         >
           <ShoppingCart />
           Add to Cart

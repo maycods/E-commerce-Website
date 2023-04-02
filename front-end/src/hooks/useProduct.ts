@@ -13,7 +13,7 @@ export function useProduct() {
     description: "",
     image: "",
     rating: 0,
-    stock: 0,
+    quantity: 0,
     category: "",
     thumbnail: "",
   });
@@ -30,7 +30,6 @@ export function useProduct() {
     );
 
     const elt = await response.data;
-    console.log(elt);
 
     let prods: Product = {
       id: elt.id,
@@ -39,7 +38,7 @@ export function useProduct() {
       description: elt.description,
       image: elt.images[0],
       rating: elt.rating,
-      stock: elt.stock,
+      quantity: elt.stock,
       category: elt.category,
       thumbnail: elt.thumbnail,
     };
