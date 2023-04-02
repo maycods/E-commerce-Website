@@ -59,7 +59,6 @@ export const Categories = () => {
                       fit="contain"
                     />
                   </Link>
-
                   <ImageListItemBar
                     title={product.title}
                     // subtitle={`price: ${product.price}`}

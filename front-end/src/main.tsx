@@ -14,6 +14,7 @@ import { Landing } from "./pages/Landing";
 import { Categories } from "./pages/Categories";
 import { ThemeOptions, createTheme, ThemeProvider } from "@mui/material";
 import { Discount } from "@mui/icons-material";
+import { Checkout } from "./pages/Checkout";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: "/discounts",
         element: <Discount />,
+      },
+      {
+        path: "/checkout",
+        element: <Checkout />,
       },
     ],
   },

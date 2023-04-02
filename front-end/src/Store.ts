@@ -16,7 +16,7 @@ interface CartProduct {
   title: String;
   price: number;
   category: string;
-  quantity: Number;
+  quantity: number;
 }
 
 export interface ProductState {
@@ -65,4 +65,62 @@ export const useStore = create<ProductState>((set) => ({
     set((state) => ({
       category: "",
     })),
+}));
+
+interface Checkout {
+  items: { title: String; quantity: number; price: number; category: String }[];
+  address: String;
+  firstName: String;
+  lastName: String;
+  email: String;
+  zip: String;
+  city: String;
+  country: String;
+  cardName: String;
+  cardNumber: String;
+  cardExpiry: String;
+  cardCvc: String;
+}
+
+//chckout store
+interface CheckoutState {
+  checkout: Checkout;
+
+  setCheckout: (checkout: Checkout) => void;
+  reset: () => void;
+}
+
+export const useCheckout = create<CheckoutState>((set) => ({
+  checkout: {
+    items: [],
+    address: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    zip: "",
+    city: "",
+    country: "",
+    cardName: "",
+    cardNumber: "",
+    cardExpiry: "",
+    cardCvc: "",
+  },
+  setCheckout: (checkout: Checkout) => set({ checkout }),
+  reset: () =>
+    set({
+      checkout: {
+        items: [],
+        address: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        zip: "",
+        city: "",
+        country: "",
+        cardName: "",
+        cardNumber: "",
+        cardExpiry: "",
+        cardCvc: "",
+      },
+    }),
 }));
