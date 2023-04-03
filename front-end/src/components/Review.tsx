@@ -2,49 +2,9 @@ import { Grid, List, ListItem, ListItemText, Typography } from "@mui/material";
 import React from "react";
 import { useCheckout } from "../Store";
 
-const products = [
-  {
-    name: "Product 1",
-    desc: "A nice thing",
-    price: "$9.99",
-  },
-  {
-    name: "Product 2",
-    desc: "Another thing",
-    price: "$3.45",
-  },
-  {
-    name: "Product 3",
-    desc: "Something else",
-    price: "$6.51",
-  },
-  {
-    name: "Product 4",
-    desc: "Best thing of all",
-    price: "$14.11",
-  },
-  { name: "Shipping", desc: "", price: "Free" },
-];
-const addresses = ["1 MUI Drive", "Reactville", "Anytown", "99999", "USA"];
-const payments = [
-  { name: "Card type", detail: "Visa" },
-  { name: "Card holder", detail: "Mr John Smith" },
-  { name: "Card number", detail: "xxxx-xxxx-xxxx-1234" },
-  { name: "Expiry date", detail: "04/2024" },
-];
-
 export default function Review() {
-  const {
-    firstName,
-    lastName,
-    items,
-    address,
-    cardName,
-    cardCvc,
-    cardExpiry,
-    cardNumber,
-  } = useCheckout((state) => state.checkout);
-  console.log(items);
+  const { firstName, lastName, items, address, cardName, cardExpiry } =
+    useCheckout((state) => state.checkout);
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>

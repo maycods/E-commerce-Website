@@ -1,7 +1,5 @@
 import { Copyright } from "@mui/icons-material";
 import {
-  AppBar,
-  Toolbar,
   Typography,
   Container,
   Paper,
@@ -11,11 +9,12 @@ import {
   Box,
   Button,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import AddressForm from "../components/AddressForm";
 import PaymentForm from "../components/PayementForm";
 import Review from "../components/Review";
-import { useCheckout } from "../Store";
+import { useStore } from "../Store";
 
 const steps = ["Shipping address", "Payment details", "Review your order"];
 
@@ -33,6 +32,8 @@ function getStepContent(step: number) {
 }
 export const Checkout = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const cart = useStore((state) => state.cart);
+  const navigate = useNavigate();
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -41,7 +42,12 @@ export const Checkout = () => {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
-  const {} = useCheckout((state) => state.checkout);
+
+  useEffect(() => {
+    if (cart.length === 0) {
+      navigate("/");
+    }
+  }, [cart, navigate]);
   return (
     <>
       <Container component="main" maxWidth="sm" sx={{ mb: 4, mt: 20 }}>
