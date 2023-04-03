@@ -62,15 +62,14 @@ export function NavBar() {
                 Products
               </Link>
             </Typography>
-            <Typography variant="h6">
+            {/* <Typography variant="h6">
               <Link
                 to="/discounts"
                 style={{ color: "white", textDecoration: "none" }}
               >
-                {/* <CategoryIcon /> */}
                 Discounts
               </Link>
-            </Typography>
+            </Typography> */}
           </Box>
           {/* <StoreIcon /> */}
           <IconButton
