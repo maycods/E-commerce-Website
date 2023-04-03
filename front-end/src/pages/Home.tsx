@@ -1,12 +1,7 @@
 import { NavBar } from "../components/NavBar";
 import { Outlet } from "react-router-dom";
-import {
-  Box,
-  createTheme,
-  CssBaseline,
-  ThemeOptions,
-  ThemeProvider,
-} from "@mui/material";
+import { Box, createTheme, CssBaseline } from "@mui/material";
+import { ThemeProvider, ThemeOptions } from "@mui/material/styles";
 
 const theme1: ThemeOptions = {
   palette: {
@@ -26,6 +21,7 @@ const theme1: ThemeOptions = {
       default: "#000000",
     },
   },
+  typography: {},
   components: {
     MuiAppBar: {
       styleOverrides: {

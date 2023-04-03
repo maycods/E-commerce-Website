@@ -2,9 +2,10 @@ import { Typography, Button, Box, Rating, TextField } from "@mui/material";
 import Image from "mui-image";
 import { useStore } from "../Store";
 import { useProduct } from "../hooks/useProduct";
-import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
+// import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import { ShoppingCart } from "@mui/icons-material";
 import { useState } from "react";
+import Grid2 from "@mui/material/Unstable_Grid2";
 
 export default function ProductDetails() {
   const addToCart = useStore((state) => state.addToCart);
