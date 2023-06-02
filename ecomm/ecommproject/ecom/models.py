@@ -27,15 +27,16 @@ class Produit (models.Model):
     promotionref = models.ForeignKey("promotion",on_delete=models.SET_NULL,null=True,related_name='+',blank=True)
     thumbnail= models.CharField( max_length=240)
 class Images (models.Model):
-    image=models.CharField( max_length=256)
+    image=models.ImageField
     prdRef=models.ForeignKey("Produit",on_delete=models.SET_NULL,null=True,related_name='+',blank=True)
 class user(models.Model):
-    username=models.CharField(max_length=15)
-    psw=models.CharField(max_length=60)
+    username=models.CharField("username",max_length=15)
+    psw=models.CharField("psw",max_length=60)
 class client(user):
     name=models.CharField("Name", max_length=50) 
+    firstname=models.CharField("firstname", max_length=50,null=True) 
     Telephone = models.PositiveIntegerField(validators=[MinValueValidator(100000), MaxValueValidator(999999)])
-    Mail = models.EmailField()#shoppingCard=#######
+    Mail = models.EmailField()
 class order (models.Model): 
     produitref=models.ForeignKey("Produit",on_delete=models.SET_NULL,null=True,related_name='+',blank=True)
     customerref=models.ForeignKey("client",on_delete=models.SET_NULL,null=True,related_name='+',blank=True)
@@ -43,3 +44,4 @@ class order (models.Model):
     rating=models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
     prixtotal= models.FloatField("price")#attribut calculé    
     unique_together = ('produitref','customerref')
+    dateorder=models.DateField()

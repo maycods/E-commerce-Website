@@ -19,6 +19,6 @@ from django.urls import path,include, re_path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^api/articles/$', views.get_article),
-    re_path(r'^api/article/([0-9])$', views.update_article),
+   # re_path(r'^api/articles/$', views.get_article),
+    #re_path(r'^api/article/([0-9])$', views.update_article),
 ]
