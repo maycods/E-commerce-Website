@@ -19,6 +19,16 @@ from django.urls import path,include, re_path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-   # re_path(r'^api/articles/$', views.get_article),
+    path('products/', views.get_products),
+    path('clients/', views.get_clients),
+    path('products/<int:pk>', views.get_product),
+    #path('products/category/<string:cat>'),  
+    path('postproducts/', views.create_product),
+
+    path('orders/', views.get_orders),
+    path('orders/<int:pk>', views.get_order),
+    path('postorder/', views.create_order),
+    path('putorder/<int:pk>', views.update_order),
+    path('deleteorder/<int:pk>', views.delete_order),
     #re_path(r'^api/article/([0-9])$', views.update_article),
 ]
