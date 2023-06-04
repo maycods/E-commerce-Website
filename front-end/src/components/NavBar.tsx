@@ -10,6 +10,7 @@ import {
   Avatar,
   Select,
   MenuItem,
+  SelectChangeEvent,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useStore } from "../Store";
@@ -26,26 +27,8 @@ export function NavBar() {
   console.log(user);
   const nbItems = useStore((state) => state.nbItems);
 
-  function handleChangeUser() {
-    // if (user?.role === "buyer") {
-    //   axios
-    //     .post("api/users/role", {
-    //       role: "seller",
-    //     })
-    //     .then((res) => {
-    //       console.log(res);
-    //       window.location.reload();
-    //     });
-    // } else {
-    //   axios
-    //     .post("api/users/role", {
-    //       role: "buyer",
-    //     })
-    //     .then((res) => {
-    //       console.log(res);
-    //       window.location.reload();
-    //     });
-    // }
+  function handleChangeUser(e: SelectChangeEvent<string>) {
+    setRole(e.target.value);
   }
   return (
     <AppBar position="fixed">
@@ -103,7 +86,7 @@ export function NavBar() {
             </Typography> */}
             {/* <StoreIcon /> */}
           </Box>
-          <Select value={role} onChange={() => handleChangeUser()}>
+          <Select value={role} onChange={(e) => handleChangeUser(e)}>
             <MenuItem value="buyer">Buyer</MenuItem>
             <MenuItem value="seller">Seller</MenuItem>
           </Select>
