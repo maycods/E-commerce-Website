@@ -8,10 +8,10 @@ export function useProducts(category: String) {
   const categoryString = category ? `category/${category}` : "";
 
   const getProducts = async () => {
-    const response = await axios.get(
-      `https://dummyjson.com/products/${categoryString}`
-    );
+    const response = await axios.get(`api/products/${categoryString}`);
     const data = await response.data;
+    console.log(data);
+
     let prods: Product[] = data.products.map(
       (elt: {
         title: any;

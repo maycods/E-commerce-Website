@@ -13,9 +13,7 @@ export const useCategories = (searchTerm: string) => {
   }
 
   const getCategories = async (searchTerm: String) => {
-    const response = await axios.get(
-      "https://dummyjson.com/products/categories"
-    );
+    const response = await axios.get("api/categories");
     let data = await response.data;
     let res = handleSearch(searchTerm, data);
     //map every element to an object with an id
