@@ -27,7 +27,7 @@ class Produit (models.Model):
     promotionref = models.ForeignKey("promotion",on_delete=models.SET_NULL,null=True,related_name='+',blank=True)
     thumbnail= models.CharField( max_length=240)
 class Images (models.Model):
-    image=models.ImageField
+    images=models.ImageField
     prdRef=models.ForeignKey("Produit",on_delete=models.SET_NULL,null=True,related_name='+',blank=True)
 class user(models.Model):
     username=models.CharField("username",max_length=15)
@@ -45,3 +45,4 @@ class order (models.Model):
     prixtotal= models.FloatField("price")#attribut calculé    
     unique_together = ('produitref','customerref')
     dateorder=models.DateField()
+    
