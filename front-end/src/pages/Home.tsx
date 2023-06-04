@@ -1,6 +1,6 @@
 import { NavBar } from "../components/NavBar";
 import { Outlet } from "react-router-dom";
-import { Box, createTheme, CssBaseline } from "@mui/material";
+import { Box, createTheme, CssBaseline } from "@mui/material/";
 import { ThemeProvider, ThemeOptions } from "@mui/material/styles";
 
 const theme1: ThemeOptions = {
@@ -47,7 +47,6 @@ const theme1: ThemeOptions = {
         root: {
           display: "flex",
           flexDirection: "column",
-
           gradient: "linear-gradient(45deg, #FE6B8B 30%, #007FFF 90%)",
           border: "solid 2px transparent",
           borderImage: "linear-gradient(45deg, #FE6B8B, #007FFF) 1",

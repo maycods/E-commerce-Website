@@ -7,15 +7,35 @@ import {
   keyframes,
   Container,
   Box,
+  Avatar,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useStore } from "../Store";
 import { ShoppingCart } from "@mui/icons-material";
 import CategoryIcon from "@mui/icons-material/Category";
 import StoreIcon from "@mui/icons-material/Store";
+import { useUser } from "../hooks/useUser";
+import axios from "axios";
+import { useEffect } from "react";
 
 export function NavBar() {
+  const { user } = useUser();
+  console.log(user);
   const nbItems = useStore((state) => state.nbItems);
+  // async function postProduct() {
+  //   const response = await axios.post("api/products", {
+  //     name: "test",
+  //     description: "test",
+  //     price: 10,
+  //     image: "test",
+  //     category: "test",
+  //   });
+  //   console.log(response);
+  // }
+  // useEffect(() => {
+  //   postProduct();
+  // }, []);
+
   return (
     <AppBar position="fixed">
       <Container maxWidth="xl">
@@ -70,18 +90,25 @@ export function NavBar() {
                 Discounts
               </Link>
             </Typography> */}
+            {/* <StoreIcon /> */}
+            <IconButton
+              aria-label="cart"
+              component={Link}
+              to="/cart"
+              color="inherit"
+            >
+              <Badge badgeContent={nbItems} color="secondary">
+                <ShoppingCart />
+              </Badge>
+            </IconButton>
+            <Box display="flex" justifyContent="center" alignItems="center">
+              <Typography variant="h6">
+                {user?.firstName} {user?.lastName}
+              </Typography>
+
+              <Avatar alt="Remy Sharp" src={user?.image} />
+            </Box>
           </Box>
-          {/* <StoreIcon /> */}
-          <IconButton
-            aria-label="cart"
-            component={Link}
-            to="/cart"
-            color="inherit"
-          >
-            <Badge badgeContent={nbItems} color="secondary">
-              <ShoppingCart />
-            </Badge>
-          </IconButton>
           {/* <Button component={Link} to="/login" color="inherit">
           Login
         </Button> */}

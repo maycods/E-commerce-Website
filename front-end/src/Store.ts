@@ -29,6 +29,26 @@ export interface ProductState {
   resetCategory: () => void;
 }
 
+interface User {
+  id: number;
+  firstName: string;
+  lastName: string;
+  image: string;
+}
+export interface UserState {
+  user: User;
+  setUser: (user: User) => void;
+  resetUser: () => void;
+}
+export const useUser = create<User>((set) => ({
+  id: 0,
+  firstName: "",
+  lastName: "",
+  image: "",
+  setUser: (user: User) => set({ user }),
+  resetUser: () => set({ id: 0, firstName: "", lastName: "" }),
+}));
+
 export const useStore = create<ProductState>((set) => ({
   nbItems: 0,
   cart: [],
