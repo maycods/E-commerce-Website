@@ -40,6 +40,21 @@ export interface UserState {
   setUser: (user: User) => void;
   resetUser: () => void;
 }
+// create role enum
+export enum Role {
+  buyer,
+  seller,
+}
+export interface RoleState {
+  role: Role;
+  setRole: (role: Role) => void;
+}
+
+export const useRole = create<RoleState>((set) => ({
+  role: Role.buyer,
+  setRole: (r: Role) => set((state) => ({ ...state, role: r })),
+}));
+
 export const useUser = create<User>((set) => ({
   id: 0,
   firstName: "",

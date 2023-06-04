@@ -13,30 +13,22 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import { useStore } from "../Store";
+import { useStore, useRole, Role } from "../Store";
 import { ShoppingCart } from "@mui/icons-material";
-import CategoryIcon from "@mui/icons-material/Category";
-import StoreIcon from "@mui/icons-material/Store";
 import { useUser } from "../hooks/useUser";
-import axios from "axios";
-import { useEffect, useState } from "react";
 
 export function NavBar() {
-  const [role, setRole] = useState("buyer");
+  const { role, setRole } = useRole((state) => state);
   const { user } = useUser();
-  console.log(user);
   const nbItems = useStore((state) => state.nbItems);
 
   function handleChangeUser(e: SelectChangeEvent<string>) {
-    setRole(e.target.value);
+    setRole(e.target.value as unknown as Role);
   }
   return (
     <AppBar position="fixed">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* <IconButton edge="start" color="inherit" aria-label="menu">
-          <MenuIcon />
-        </IconButton> */}
           <Typography
             variant="h4"
             style={{ flexGrow: 1 }}
@@ -87,8 +79,8 @@ export function NavBar() {
             {/* <StoreIcon /> */}
           </Box>
           <Select value={role} onChange={(e) => handleChangeUser(e)}>
-            <MenuItem value="buyer">Buyer</MenuItem>
-            <MenuItem value="seller">Seller</MenuItem>
+            <MenuItem value={Role.buyer}>Buyer</MenuItem>
+            <MenuItem value={Role.seller}>Seller</MenuItem>
           </Select>
           <IconButton
             aria-label="cart"
