@@ -8,6 +8,8 @@ import {
   Container,
   Box,
   Avatar,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useStore } from "../Store";
@@ -16,26 +18,35 @@ import CategoryIcon from "@mui/icons-material/Category";
 import StoreIcon from "@mui/icons-material/Store";
 import { useUser } from "../hooks/useUser";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export function NavBar() {
+  const [role, setRole] = useState("buyer");
   const { user } = useUser();
   console.log(user);
   const nbItems = useStore((state) => state.nbItems);
-  // async function postProduct() {
-  //   const response = await axios.post("api/products", {
-  //     name: "test",
-  //     description: "test",
-  //     price: 10,
-  //     image: "test",
-  //     category: "test",
-  //   });
-  //   console.log(response);
-  // }
-  // useEffect(() => {
-  //   postProduct();
-  // }, []);
 
+  function handleChangeUser() {
+    // if (user?.role === "buyer") {
+    //   axios
+    //     .post("api/users/role", {
+    //       role: "seller",
+    //     })
+    //     .then((res) => {
+    //       console.log(res);
+    //       window.location.reload();
+    //     });
+    // } else {
+    //   axios
+    //     .post("api/users/role", {
+    //       role: "buyer",
+    //     })
+    //     .then((res) => {
+    //       console.log(res);
+    //       window.location.reload();
+    //     });
+    // }
+  }
   return (
     <AppBar position="fixed">
       <Container maxWidth="xl">
@@ -91,23 +102,27 @@ export function NavBar() {
               </Link>
             </Typography> */}
             {/* <StoreIcon /> */}
-            <IconButton
-              aria-label="cart"
-              component={Link}
-              to="/cart"
-              color="inherit"
-            >
-              <Badge badgeContent={nbItems} color="secondary">
-                <ShoppingCart />
-              </Badge>
-            </IconButton>
-            <Box display="flex" justifyContent="center" alignItems="center">
-              <Typography variant="h6">
-                {user?.firstName} {user?.lastName}
-              </Typography>
+          </Box>
+          <Select value={role} onChange={() => handleChangeUser()}>
+            <MenuItem value="buyer">Buyer</MenuItem>
+            <MenuItem value="seller">Seller</MenuItem>
+          </Select>
+          <IconButton
+            aria-label="cart"
+            component={Link}
+            to="/cart"
+            color="inherit"
+          >
+            <Badge badgeContent={nbItems} color="secondary">
+              <ShoppingCart />
+            </Badge>
+          </IconButton>
+          <Box display="flex" justifyContent="center" alignItems="center">
+            <Typography variant="h6">
+              {user?.firstName} {user?.lastName}
+            </Typography>
 
-              <Avatar alt="Remy Sharp" src={user?.image} />
-            </Box>
+            <Avatar alt="Remy Sharp" src={user?.image} />
           </Box>
           {/* <Button component={Link} to="/login" color="inherit">
           Login
