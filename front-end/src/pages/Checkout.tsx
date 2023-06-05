@@ -15,7 +15,9 @@ import AddressForm from "../components/AddressForm";
 import PaymentForm from "../components/PayementForm";
 import Review from "../components/Review";
 import { useStore } from "../Store";
-
+import axios from "axios";
+import { useUser } from "../hooks/useUser";
+axios.defaults.xsrfHeaderName = "X-CSRFToken";
 const steps = ["Shipping address", "Payment details", "Review your order"];
 
 function getStepContent(step: number) {
@@ -34,8 +36,49 @@ export const Checkout = () => {
   const [activeStep, setActiveStep] = useState(0);
   const cart = useStore((state) => state.cart);
   const navigate = useNavigate();
+  const { user } = useUser();
+  //user without image
 
+  console.log(user);
+  async function addOrder() {
+    //allow cross origin
+
+    var date = new Date();
+
+    // Extract the year, month, and day from the date object
+    var year = date.getFullYear();
+    var month = ("0" + (date.getMonth() + 1)).slice(-2); // Adding leading zero if necessary
+    var day = ("0" + date.getDate()).slice(-2); // Adding leading zero if necessary
+
+    // Format the date to yyyy-mm-dd
+    var formattedDate = year + "-" + month + "-" + day;
+    const url = "http://localhost:8000/postorder/";
+    cart.map(async (elt) => {
+      const response = await axios.post(
+        url,
+        {
+          produitref: elt,
+          customerref: user,
+          qte: elt.quantity,
+          rating: elt.rating,
+          prixtotal: elt.price * elt.quantity,
+          //set the date format to yyyy-mm-dd
+          dateorder: formattedDate,
+        }
+        // {
+        //   headers: { "X-CSRFToken": csrfToken },
+        // }
+      );
+      console.log(response);
+    });
+
+    // const response = await axios.post("/api/postorder/",{})
+  }
   const handleNext = () => {
+    if (activeStep == 2) {
+      console.log("hello");
+      addOrder();
+    }
     setActiveStep(activeStep + 1);
   };
 

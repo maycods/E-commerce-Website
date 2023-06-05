@@ -104,9 +104,7 @@ export function NavBar() {
             </Badge>
           </IconButton>
           <Box display="flex" justifyContent="center" alignItems="center">
-            <Typography variant="h6">
-              {user?.firstName} {user?.lastName}
-            </Typography>
+            <Typography variant="h6">{user?.username}</Typography>
 
             <Avatar alt="Remy Sharp" src={user?.image} />
           </Box>

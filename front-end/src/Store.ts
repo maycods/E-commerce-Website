@@ -17,6 +17,7 @@ interface CartProduct {
   price: number;
   category: string;
   quantity: number;
+  rating: number;
 }
 
 export interface ProductState {
@@ -82,6 +83,7 @@ export const useStore = create<ProductState>((set) => ({
             price: product.price,
             quantity: quantity,
             title: product.title,
+            rating: product.rating,
           },
         ],
         nbItems: state.nbItems + 1,

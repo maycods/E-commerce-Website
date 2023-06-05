@@ -12,7 +12,7 @@ export function useProducts(category: String) {
     const data = await response.data;
     console.log(data);
 
-    let prods: Product[] = data.products.map(
+    let prods: Product[] = data.produits.map(
       (elt: {
         title: any;
         id: any;
@@ -29,7 +29,7 @@ export function useProducts(category: String) {
           title: elt.title,
           price: elt.price,
           description: elt.description,
-          image: elt.images[0],
+          image: elt.thumbnail,
           rating: elt.rating,
           stock: elt.stock,
           category: elt.category,
