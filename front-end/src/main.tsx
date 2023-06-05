@@ -12,9 +12,9 @@ import { Home } from "./pages/Home";
 import ProductDetails from "./pages/ProductDetails";
 import { Landing } from "./pages/Landing";
 import { Categories } from "./pages/Categories";
-import { ThemeOptions, createTheme, ThemeProvider } from "@mui/material";
 import { Discount } from "@mui/icons-material";
 import { Checkout } from "./pages/Checkout";
+import Orders from "./pages/Orders";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -48,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: "/checkout",
         element: <Checkout />,
+      },
+      {
+        path: "/orders",
+        element: <Orders />,
       },
     ],
   },

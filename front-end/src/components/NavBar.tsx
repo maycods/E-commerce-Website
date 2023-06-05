@@ -80,11 +80,19 @@ export function NavBar() {
               </Link>
             </Typography> */}
             {/* <StoreIcon /> */}
-          </Box>
-          {/* <Select value={role} onChange={(e) => handleChangeUser(e)}>
+            {/* <Select value={role} onChange={(e) => handleChangeUser(e)}>
             <MenuItem value={Role.buyer}>Buyer</MenuItem>
             <MenuItem value={Role.seller}>Seller</MenuItem>
           </Select> */}
+            <Typography variant="h6">
+              <Link
+                to="/orders"
+                style={{ color: "white", textDecoration: "none" }}
+              >
+                Orders
+              </Link>
+            </Typography>
+          </Box>
           <IconButton
             aria-label="cart"
             component={Link}
