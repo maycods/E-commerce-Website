@@ -12,19 +12,22 @@ import {
   MenuItem,
   SelectChangeEvent,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useStore, useRole, Role } from "../Store";
 import { ShoppingCart } from "@mui/icons-material";
 import { useUser } from "../hooks/useUser";
 
 export function NavBar() {
-  const { role, setRole } = useRole((state) => state);
+  // const { role, setRole } = useRole((state) => state);
   const { user } = useUser();
   const nbItems = useStore((state) => state.nbItems);
+  // const navigate = useNavigate();
 
-  function handleChangeUser(e: SelectChangeEvent<string>) {
-    setRole(e.target.value as unknown as Role);
-  }
+  // function handleChangeUser(e: SelectChangeEvent<Role>) {
+  //   setRole(e.target.value as unknown as Role);
+  //   navigate
+
+  // }
   return (
     <AppBar position="fixed">
       <Container maxWidth="xl">
@@ -78,10 +81,10 @@ export function NavBar() {
             </Typography> */}
             {/* <StoreIcon /> */}
           </Box>
-          <Select value={role} onChange={(e) => handleChangeUser(e)}>
+          {/* <Select value={role} onChange={(e) => handleChangeUser(e)}>
             <MenuItem value={Role.buyer}>Buyer</MenuItem>
             <MenuItem value={Role.seller}>Seller</MenuItem>
-          </Select>
+          </Select> */}
           <IconButton
             aria-label="cart"
             component={Link}
