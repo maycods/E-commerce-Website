@@ -17,6 +17,9 @@ import { Link } from "react-router-dom";
 export const Categories = () => {
   const categories = useCategories("");
   const products = useProducts("");
+  console.log(products);
+  console.log(categories);
+
   const navigate = useNavigate();
   return (
     <Grid container spacing={8} marginTop="1.5rem">
@@ -48,12 +51,12 @@ export const Categories = () => {
             }}
           >
             {products
-              .filter((prod) => prod.category === category.name)
+              .filter((prod) => prod.category - 1 === category.id)
               .map((product) => (
                 <ImageListItem key={product.id}>
                   <Link to={`/products/${product.id}`}>
                     <Image
-                      src={product.image}
+                      src={product.thumbnail}
                       alt={product.title}
                       height="50vh"
                       fit="contain"

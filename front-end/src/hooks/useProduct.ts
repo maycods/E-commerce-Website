@@ -25,19 +25,18 @@ export function useProduct() {
   //     .catch((error) => console.error(error));
   // }, [productId]);
   async function getProduct() {
-    const response = await axios.get(
-      `https://dummyjson.com/products/${productId}`
-    );
+    const url = `http://localhost:8000/product/${productId}`;
+    const response = await axios.get("/api/product/" + productId);
 
-    const elt = await response.data;
+    const elt = await response.data.produit;
 
     let prods: Product = {
       id: elt.id,
       title: elt.title,
       price: elt.price,
       description: elt.description,
-      image: elt.images[0],
-      rating: elt.rating,
+      image: elt.thumbnail,
+      rating: elt.ratingt,
       quantity: elt.stock,
       category: elt.category,
       thumbnail: elt.thumbnail,

@@ -5,18 +5,16 @@ export const useCategories = (searchTerm: string) => {
   const [categories, setCategories] = useState<{ id: number; name: string }[]>(
     []
   );
-  function handleSearch(searchTerm: String, categories: string[]): string[] {
-    let cats = categories.filter((category) =>
-      category.toLowerCase().includes(searchTerm.toLowerCase())
+  function handleSearch(searchTerm: String, categories: any): string[] {
+    let cats = categories.filter((cat) =>
+      cat.toLowerCase().includes(searchTerm.toLowerCase())
     );
     return cats;
   }
 
   const getCategories = async (searchTerm: String) => {
     // const response = await axios.get("api/categories");
-    const response = await axios.get(
-      "https://dummyjson.com/products/categories"
-    );
+    const response = await axios.get("api/products/categories/");
     let data = await response.data;
     let res = handleSearch(searchTerm, data);
     //map every element to an object with an id

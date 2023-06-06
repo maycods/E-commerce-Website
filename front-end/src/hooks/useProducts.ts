@@ -5,16 +5,14 @@ import { Product } from "../Store";
 
 export function useProducts(category: String) {
   const [products, setProducts] = useState<Product[]>([]);
-  const categoryString = category ? `category/${category}` : "";
+  const categoryString = category ? `${category}` : "";
 
   const getProducts = async () => {
-    const response = await axios.get(
-      `https://dummyjson.com/products/${categoryString}`
-    );
-    const data = await response.data;
-    console.log(data);
+    const response = await axios.get(`api/products/${categoryString}`);
+    console.log(response.data);
+    const data = await response.data.produits;
 
-    let prods: Product[] = data.products.map(
+    let prods: Product[] = data.map(
       (elt: {
         title: any;
         id: any;
@@ -32,9 +30,9 @@ export function useProducts(category: String) {
           price: elt.price,
           description: elt.description,
           image: elt.thumbnail,
-          rating: elt.rating,
+          rating: elt.ratingt,
           stock: elt.stock,
-          category: elt.category,
+          category: elt.categoryp_id,
           thumbnail: elt.thumbnail,
         };
       }

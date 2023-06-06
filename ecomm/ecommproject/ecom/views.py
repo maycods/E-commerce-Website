@@ -1,7 +1,7 @@
 from rest_framework.decorators import api_view
 from django.forms import model_to_dict
 from django.http import JsonResponse
-from .models import Produit, order, client
+from .models import Category, Images, Produit, order, client
 from .serializers import *
 from django.http import JsonResponse
 from django.http import JsonResponse
@@ -15,15 +15,69 @@ def get_products(request):
 
 
 @api_view(["GET"])
+def get_category(request, category):
+    try:
+        cat = Category.objects.get(category=category)
+        data = {"category": model_to_dict(cat)}
+        return JsonResponse(data)
+    except Category.DoesNotExist:
+        return JsonResponse({"error": "category not found"}, status=404)
+
+
+@api_view(["GET"])
+def get_categories(request):
+    cat = Category.objects.all()
+    # convert the query set to list of strings
+    # data = {"categories": list(cat.values())}
+    data = []
+    for i in cat:
+        data.append(i.category)
+    # data = {"categories": list(cat["category"])}
+    return JsonResponse(data, safe=False)
+
+
+@api_view(["GET"])
+def get_images(request):
+    img = Images.objects.all()
+    data = {"images": list(img.values())}
+    return JsonResponse(data)
+
+
+@api_view(["GET"])
+def get_image(request, pk):
+    try:
+        img = Images.objects.get(pk=pk)
+        image_path = img.img.url
+        data = {"img": image_path}
+        return JsonResponse(data, safe=False)
+    except Images.DoesNotExist:
+        return JsonResponse({"error": "image not found"}, status=404)
+
+
+@api_view(["GET"])
 def get_clients(request):
     clt = client.objects.all()
     data = {"clients": list(clt.values())}
     return JsonResponse(data)
 
 
+# get products of a certain category
+@api_view(["GET"])
+def get_products_of_category(request, category):
+    try:
+        cat = Category.objects.get(category=category)
+        products = Produit.objects.filter(categoryp=cat)
+        data = {"produits": list(products.values())}
+        print(data)
+        return JsonResponse(data)
+    except Category.DoesNotExist:
+        return JsonResponse({"error": "category not found"}, status=404)
+
+
 @api_view(["GET"])
 def get_product(request, pk):
     try:
+        print(pk)
         product = Produit.objects.get(pk=pk)
         data = {"produit": model_to_dict(product)}
         return JsonResponse(data)
