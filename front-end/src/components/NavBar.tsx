@@ -19,7 +19,8 @@ import { useUser } from "../hooks/useUser";
 
 export function NavBar() {
   // const { role, setRole } = useRole((state) => state);
-  const { user } = useUser();
+  const user = useUser();
+
   const nbItems = useStore((state) => state.nbItems);
   // const navigate = useNavigate();
 

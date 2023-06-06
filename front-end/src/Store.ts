@@ -28,12 +28,17 @@ export interface ProductState {
   category: string;
   setCategory: (category: string) => void;
   resetCategory: () => void;
+  resetCart: () => void;
 }
 
 interface User {
   id: number;
-  firstName: string;
-  lastName: string;
+  username: string;
+  psw: string;
+  name: string;
+  firstname: string;
+  telephone: string;
+  mail: string;
   image: string;
 }
 export interface UserState {
@@ -56,13 +61,29 @@ export const useRole = create<RoleState>((set) => ({
   setRole: (r: Role) => set((state) => ({ ...state, role: r })),
 }));
 
-export const useUser = create<User>((set) => ({
-  id: 0,
-  firstName: "",
-  lastName: "",
-  image: "",
+export const useUserState = create<UserState>((set) => ({
+  user: {
+    id: 0,
+    firstname: "",
+    psw: "",
+    telephone: "",
+    image: "",
+    mail: "",
+    name: "",
+    username: "",
+  },
   setUser: (user: User) => set({ user }),
-  resetUser: () => set({ id: 0, firstName: "", lastName: "" }),
+  resetUser: () =>
+    set({
+      id: 0,
+      firstname: "",
+      psw: "",
+      telephone: "",
+      image: "",
+      mail: "",
+      name: "",
+      username: "",
+    }),
 }));
 
 export const useStore = create<ProductState>((set) => ({
@@ -102,6 +123,7 @@ export const useStore = create<ProductState>((set) => ({
     set((state) => ({
       category: "",
     })),
+  resetCart: () => set((state) => ({ cart: [], nbItems: 0 })),
 }));
 
 interface Checkout {

@@ -35,11 +35,11 @@ function getStepContent(step: number) {
 export const Checkout = () => {
   const [activeStep, setActiveStep] = useState(0);
   const cart = useStore((state) => state.cart);
+  const cartS = useStore((state) => state);
   const navigate = useNavigate();
-  const { user } = useUser();
+  const user = useUser();
   //user without image
 
-  console.log(user);
   async function addOrder() {
     //allow cross origin
 
@@ -69,8 +69,8 @@ export const Checkout = () => {
         //   headers: { "X-CSRFToken": csrfToken },
         // }
       );
-      console.log(response);
     });
+    cartS.resetCart();
 
     // const response = await axios.post("/api/postorder/",{})
   }
